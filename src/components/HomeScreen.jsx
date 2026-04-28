@@ -1,5 +1,6 @@
 import AppHeader from "./AppHeader";
 import { getSessionPreview, formatSessionTime } from "../utils/chat";
+import { MessageIcon, SparkIcon } from "./icons";
 
 function HomeScreen({
   currentUser,
@@ -21,9 +22,12 @@ function HomeScreen({
 
       <section className="chat-home">
         <div className="chat-home-intro">
-          <p className="section-kicker">Chats</p>
-          <h1 className="landing-serif text-4xl text-black">
-            Your conversations
+          <p className="section-kicker">
+            <MessageIcon className="h-4 w-4" />
+            Chats
+          </p>
+          <h1 className="landing-serif chat-home-title">
+            Your Conversations
           </h1>
           <p className="chat-home-copy">
             Pick up where you left off, or start a fresh reflection.
@@ -34,21 +38,23 @@ function HomeScreen({
           {sessions.length === 0 ? (
             <div className="empty-state">
               <div className="empty-state-orb" />
+              <h3 className="empty-state-title">Start Your Journey</h3>
               <p className="empty-state-copy">
-                No chats yet. Start your first private conversation.
+                No chats yet. Start your first private conversation with Lumora.
               </p>
               <button
                 className="solid-button"
                 type="button"
                 onClick={onNewChat}
               >
+                <SparkIcon className="h-4 w-4" />
                 New chat
               </button>
             </div>
           ) : (
             <>
               <div className="chat-home-toolbar">
-                <p className="text-sm font-medium text-black/55">
+                <p className="chat-count">
                   {sessions.length} {sessions.length === 1 ? "chat" : "chats"}
                 </p>
                 <button
@@ -56,6 +62,7 @@ function HomeScreen({
                   type="button"
                   onClick={onNewChat}
                 >
+                  <SparkIcon className="h-4 w-4" />
                   New chat
                 </button>
               </div>
@@ -68,7 +75,7 @@ function HomeScreen({
                     type="button"
                     onClick={() => onOpenChat(session.id)}
                   >
-                    <div>
+                    <div className="chat-list-content">
                       <p className="chat-list-title">{session.title}</p>
                       <p className="chat-list-copy">
                         {getSessionPreview(session.messages)}

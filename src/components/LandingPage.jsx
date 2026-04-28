@@ -1,29 +1,35 @@
 import { useEffect, useRef, useState } from "react";
-import { QuoteIcon, SparkIcon } from "./icons";
+import { QuoteIcon, SparkIcon, ShieldIcon, HeartIcon, BrainIcon } from "./icons";
 
 const features = [
   {
-    title: "Mood intelligence",
+    icon: <BrainIcon className="h-5 w-5" />,
+    title: "Mood Intelligence",
     copy: "Tracks emotional patterns over time and gently notices what tends to pull you into stress, sadness, or anxiety.",
   },
   {
-    title: "Adaptive personality",
+    icon: <HeartIcon className="h-5 w-5" />,
+    title: "Adaptive Personality",
     copy: "Lumora learns your rhythm, your phrasing, and your emotional pace so each conversation feels more natural.",
   },
   {
-    title: "Emotional analytics",
+    icon: <SparkIcon className="h-5 w-5" />,
+    title: "Emotional Analytics",
     copy: "Soft insight without noisy dashboards. Quiet patterns, clearer evenings, and a better sense of what helps.",
   },
   {
-    title: "Private and safe",
+    icon: <ShieldIcon className="h-5 w-5" />,
+    title: "Private and Safe",
     copy: "No judgement, no pressure, no performance. A protected room you can step into when the day feels loud.",
   },
   {
-    title: "Smart prompt evolution",
+    icon: <BrainIcon className="h-5 w-5" />,
+    title: "Smart Prompts",
     copy: "Questions get better over time, based on what actually helps you reflect instead of what sounds clever.",
   },
   {
-    title: "Goals and habits",
+    icon: <HeartIcon className="h-5 w-5" />,
+    title: "Goals and Habits",
     copy: "Build small emotional habits with reminders that respect your pace and never make calm feel like homework.",
   },
 ];
@@ -32,11 +38,7 @@ const orbitNodes = [
   { title: "Tone", subtitle: "balancing", className: "orbit-track-one" },
   { title: "Guide", subtitle: "suggestion", className: "orbit-track-two" },
   { title: "Emotion", subtitle: "detection", className: "orbit-track-three" },
-  {
-    title: "Context",
-    subtitle: "understanding",
-    className: "orbit-track-four",
-  },
+  { title: "Context", subtitle: "awareness", className: "orbit-track-four" },
   { title: "Memory", subtitle: "patterns", className: "orbit-track-five" },
   { title: "Refine", subtitle: "response", className: "orbit-track-six" },
 ];
@@ -99,6 +101,13 @@ const pricing = [
   },
 ];
 
+const stats = [
+  { value: "50K+", label: "Active Users" },
+  { value: "2M+", label: "Conversations" },
+  { value: "4.9", label: "App Rating" },
+  { value: "98%", label: "Satisfaction" },
+];
+
 function LandingPage({ onLogIn, onSignUp }) {
   const [showNavCta, setShowNavCta] = useState(false);
 
@@ -130,19 +139,21 @@ function LandingPage({ onLogIn, onSignUp }) {
         <div className="hero-copy">
           <div className="hero-kicker">
             <span className="hero-kicker-dot" />
-            powered by 6 synchronized agents
+            AI-Powered Therapy Companion
           </div>
-          <h1 className="landing-title text-black">
+          <h1 className="landing-title">
             From <span className="animated-highlight">overthinking</span>
             <br />
             to understanding.
           </h1>
           <p className="landing-copy hero-copy-text">
             A calm AI companion that helps you slow spirals, name what is loud,
-            and move toward clarity without pressure.
+            and move toward clarity without pressure. Your mental wellness
+            journey starts here.
           </p>
           <div className="landing-actions">
             <button className="solid-button" type="button" onClick={onSignUp}>
+              <SparkIcon className="h-4 w-4" />
               Start free
             </button>
             <button className="glass-button" type="button" onClick={onLogIn}>
@@ -150,7 +161,7 @@ function LandingPage({ onLogIn, onSignUp }) {
             </button>
           </div>
           <p className="hero-footnote">
-            No credit card. No pressure. Begin gently.
+            No credit card required. Begin your journey gently.
           </p>
         </div>
 
@@ -158,9 +169,9 @@ function LandingPage({ onLogIn, onSignUp }) {
           <div className="chat-preview-card">
             <div className="chat-preview-head">
               <div className="chat-preview-identity">
-                <span className="chat-preview-avatar">l</span>
+                <span className="chat-preview-avatar">L</span>
                 <div>
-                  <p>lumora</p>
+                  <p>Lumora</p>
                   <span>6 agents present</span>
                 </div>
               </div>
@@ -197,6 +208,18 @@ function LandingPage({ onLogIn, onSignUp }) {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="landing-section">
+        <div className="stats-grid">
+          {stats.map((stat) => (
+            <div key={stat.label} className="stat-item">
+              <p className="stat-value">{stat.value}</p>
+              <p className="stat-label">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="engine-grid landing-section landing-section-spacious">
         <div className="orbit-stage">
           <div className="orbit-center">
@@ -216,7 +239,7 @@ function LandingPage({ onLogIn, onSignUp }) {
         </div>
 
         <div className="engine-copy">
-          <p className="section-kicker">The engine</p>
+          <p className="section-kicker">The Engine</p>
           <h2 className="landing-serif section-title">
             Six minds, one quiet voice.
           </h2>
@@ -238,7 +261,7 @@ function LandingPage({ onLogIn, onSignUp }) {
 
       <section className="landing-section landing-section-spacious">
         <div className="section-heading">
-          <p className="section-kicker">What you get</p>
+          <p className="section-kicker">Features</p>
           <h2 className="landing-serif section-title">
             Designed to feel like a deep breath.
           </h2>
@@ -251,7 +274,9 @@ function LandingPage({ onLogIn, onSignUp }) {
         <div className="feature-grid">
           {features.map((feature, index) => (
             <article key={feature.title} className="feature-card shine-card">
-              <div className="feature-icon">{index + 1}</div>
+              <div className="feature-icon">
+                {feature.icon || index + 1}
+              </div>
               <h3>{feature.title}</h3>
               <p>{feature.copy}</p>
             </article>
@@ -259,9 +284,52 @@ function LandingPage({ onLogIn, onSignUp }) {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section className="landing-section landing-section-spacious">
+        <div className="section-heading">
+          <p className="section-kicker">How It Works</p>
+          <h2 className="landing-serif section-title">
+            Three steps to feeling better.
+          </h2>
+          <p className="landing-copy section-copy centered-copy">
+            Getting started with Lumora is simple. No complicated setup, no
+            lengthy questionnaires.
+          </p>
+        </div>
+
+        <div className="steps-grid">
+          <div className="step-card">
+            <div className="step-number">1</div>
+            <h3>Create Your Space</h3>
+            <p>
+              Sign up in seconds. Your private, judgment-free space is ready
+              immediately.
+            </p>
+          </div>
+          <div className="step-connector" aria-hidden="true" />
+          <div className="step-card">
+            <div className="step-number">2</div>
+            <h3>Start a Conversation</h3>
+            <p>
+              Share what is on your mind. Lumora listens and responds with
+              care and understanding.
+            </p>
+          </div>
+          <div className="step-connector" aria-hidden="true" />
+          <div className="step-card">
+            <div className="step-number">3</div>
+            <h3>Grow Together</h3>
+            <p>
+              Over time, Lumora learns your patterns and helps you build
+              healthier emotional habits.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="landing-section landing-section-spacious testimonials-section">
         <div className="section-heading">
-          <p className="section-kicker">Quiet voices</p>
+          <p className="section-kicker">Testimonials</p>
           <h2 className="landing-serif section-title">
             Held, in their own words.
           </h2>
@@ -273,7 +341,7 @@ function LandingPage({ onLogIn, onSignUp }) {
         <div className="testimonial-grid">
           {testimonials.map((item, index) => (
             <article key={item.name} className="testimonial-card shine-card">
-              <QuoteIcon className="h-8 w-8 text-black/18" />
+              <QuoteIcon className="h-8 w-8 text-blue-200" />
               <p>{item.quote}</p>
               <div className="testimonial-person">
                 <span
@@ -349,13 +417,14 @@ function LandingPage({ onLogIn, onSignUp }) {
         </p>
         <div className="landing-actions centered-actions">
           <button className="solid-button" type="button" onClick={onSignUp}>
-            Start free
+            <SparkIcon className="h-4 w-4" />
+            Start free today
           </button>
           <button className="glass-button" type="button" onClick={onLogIn}>
             Experience calm
           </button>
         </div>
-        <p className="closing-footnote">(c) 2026 lumora, built with care.</p>
+        <p className="closing-footnote">2026 Lumora. Built with care.</p>
       </section>
     </div>
   );

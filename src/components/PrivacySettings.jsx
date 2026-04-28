@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AppHeader from "./AppHeader";
+import { ShieldIcon, SettingsIcon, UserIcon } from "./icons";
 
 function PrivacySettings({ currentUser, initialPage, onBack, onSignOut }) {
   const [page, setPage] = useState(initialPage || "settings");
@@ -25,14 +26,16 @@ function PrivacySettings({ currentUser, initialPage, onBack, onSignOut }) {
             type="button"
             onClick={() => setPage("settings")}
           >
-            Settings
+            <SettingsIcon className="h-4 w-4" />
+            <span>Settings</span>
           </button>
           <button
             className={page === "privacy" ? "account-tab-active" : ""}
             type="button"
             onClick={() => setPage("privacy")}
           >
-            Privacy
+            <ShieldIcon className="h-4 w-4" />
+            <span>Privacy</span>
           </button>
         </aside>
 
@@ -56,8 +59,14 @@ function SettingsContent({ currentUser }) {
 
   return (
     <div className="settings-content">
-      <p className="section-kicker">Settings</p>
-      <h1 className="landing-serif">Your Lumora space</h1>
+      <div className="settings-header">
+        <p className="section-kicker">Settings</p>
+        <h1 className="landing-serif">Your Lumora Space</h1>
+        <p className="settings-intro">
+          Customize your experience and manage your account preferences.
+        </p>
+      </div>
+      
       <div className="settings-profile-card">
         <div className="settings-avatar">{getInitials(displayName)}</div>
         <div>
@@ -65,17 +74,27 @@ function SettingsContent({ currentUser }) {
           <p>{currentUser?.email || "Signed in"}</p>
         </div>
       </div>
+      
       <div className="settings-grid">
         <article>
-          <h3>Profile photo</h3>
+          <div className="settings-card-icon">
+            <UserIcon className="h-5 w-5" />
+          </div>
+          <h3>Profile Photo</h3>
           <p>Profile photo upload will live here once storage is connected.</p>
         </article>
         <article>
-          <h3>Conversation tone</h3>
+          <div className="settings-card-icon">
+            <SettingsIcon className="h-5 w-5" />
+          </div>
+          <h3>Conversation Tone</h3>
           <p>Keep Lumora gentle, clear, and emotionally steady by default.</p>
         </article>
         <article>
-          <h3>Voice input</h3>
+          <div className="settings-card-icon">
+            <ShieldIcon className="h-5 w-5" />
+          </div>
+          <h3>Voice Input</h3>
           <p>
             Browser speech recognition can be used when you start a live
             session.
@@ -89,9 +108,11 @@ function SettingsContent({ currentUser }) {
 function PrivacyContent() {
   return (
     <article className="privacy-content">
-      <p className="section-kicker">Privacy Policy</p>
-      <h1 className="landing-serif">Lumora Privacy Policy</h1>
-      <p className="privacy-effective">Effective Date: April 28, 2026</p>
+      <div className="privacy-header">
+        <p className="section-kicker">Privacy Policy</p>
+        <h1 className="landing-serif">Lumora Privacy Policy</h1>
+        <p className="privacy-effective">Effective Date: April 28, 2026</p>
+      </div>
 
       <PrivacySection title="1. Introduction">
         <p>
@@ -165,7 +186,7 @@ function PrivacyContent() {
 
       <PrivacySection title="6. Voice Data">
         <p>
-          Lumora uses your browser's speech recognition features for voice
+          Lumora uses your browser&apos;s speech recognition features for voice
           input.
         </p>
         <ul>
@@ -223,7 +244,7 @@ function PrivacyContent() {
 
       <PrivacySection title="12. Contact">
         <p>If you have questions about this Privacy Policy, contact us at:</p>
-        <p>support@lumora.app</p>
+        <p className="privacy-contact">support@lumora.app</p>
       </PrivacySection>
     </article>
   );

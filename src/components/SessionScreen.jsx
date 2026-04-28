@@ -1,6 +1,7 @@
 import AppHeader from "./AppHeader";
 import Composer from "./Composer";
 import VoiceBlob from "./VoiceBlob";
+import { BackIcon } from "./icons";
 
 function SessionScreen({
   assistantLevel,
@@ -26,6 +27,7 @@ function SessionScreen({
         currentUser={currentUser}
         leftAction={
           <button className="glass-button" type="button" onClick={onBack}>
+            <BackIcon className="h-4 w-4" />
             All chats
           </button>
         }
@@ -47,7 +49,7 @@ function SessionScreen({
 
       <section className="session-stage">
         <div className="session-center">
-          <p className="section-kicker">Live session</p>
+          <p className="section-kicker">Live Session</p>
           <p className="session-status">{assistantStatus}</p>
           <VoiceBlob
             level={assistantLevel}

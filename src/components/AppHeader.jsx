@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SparkIcon } from "./icons";
+import { SparkIcon, SettingsIcon, ShieldIcon, UserIcon } from "./icons";
 
 function AppHeader({
   currentUser,
@@ -53,12 +53,15 @@ function AppHeader({
                 </div>
               </div>
               <button type="button" onClick={onOpenSettings}>
+                <SettingsIcon className="h-4 w-4" />
                 Settings
               </button>
               <button type="button" onClick={onOpenPrivacy}>
+                <ShieldIcon className="h-4 w-4" />
                 Privacy
               </button>
               <button type="button" onClick={onSignOut}>
+                <UserIcon className="h-4 w-4" />
                 Sign out
               </button>
             </div>

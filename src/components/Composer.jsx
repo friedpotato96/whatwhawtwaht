@@ -10,11 +10,17 @@ function Composer({ draft, disabled, onDraftChange, onSubmit }) {
         id="message"
         value={draft}
         onChange={(event) => onDraftChange(event.target.value)}
-        placeholder="Tell lumora how you feel..."
+        placeholder="Tell Lumora how you feel..."
         disabled={disabled}
         className="composer-input"
+        autoComplete="off"
       />
-      <button className="send-button" type="submit" disabled={disabled}>
+      <button 
+        className="send-button" 
+        type="submit" 
+        disabled={disabled || !draft.trim()}
+        aria-label="Send message"
+      >
         <ArrowUpIcon className="h-5 w-5" />
       </button>
     </form>
