@@ -63,7 +63,7 @@ function AuthGate({ initialMode, onBack }) {
   return (
     <div className="auth-page">
       <button className="auth-back-button" type="button" onClick={onBack}>
-        <BackIcon className="h-5 w-5" />
+        <BackIcon className="h-4 w-4" />
         <span>Back</span>
       </button>
 
